@@ -54,8 +54,7 @@ def cmd_fetch(args):
         response = search.query(args.query, since_id=last_id)
         log_response(response)
         store_response(args.db, response, args.store_raw)
-        if args.every: sleep(args.every)
-        else: break
+        sleep(args.throttle)
 
 def cmd_backfill(args):
     search = Search(args.credentials)
@@ -77,12 +76,17 @@ def dispatch_command(args):
     } 
     commands[args.command](args)
 
-def add_default_args(parser):
+def add_shared_args(parser):
     parser.add_argument("query")
     parser.add_argument("--db",
         type=dataset.connect,
         help="SQLAlchemy connection string. Default: " + DEFAULT_DB,
         default=DEFAULT_DB)
+    parser.add_argument("--throttle",
+        type=int,
+        default=15,
+        help="""Wait X seconds between requests.
+        Default: 15 (to stay under rate limits)""")
     parser.add_argument("--credentials",
         type=get_credentials,
         help="""
@@ -102,18 +106,10 @@ def parse_args():
     subparsers = parser.add_subparsers(title="subcommands", dest="command")
 
     parser_fetch = subparsers.add_parser("fetch")
-    add_default_args(parser_fetch)
-    parser_fetch.add_argument("--every",
-        type=int,
-        help="""Fetch tweets every X seconds.
-        Optional. If not supplied, only fetches once.""")
+    add_shared_args(parser_fetch)
 
     parser_backfill = subparsers.add_parser("backfill")
-    add_default_args(parser_backfill)
-    parser_backfill.add_argument("--throttle",
-        type=int,
-        help="Wait X seconds between API requests. Default: 5.",
-        default=5)
+    add_shared_args(parser_backfill)
 
     args = parser.parse_args()
     return args
