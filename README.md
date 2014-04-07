@@ -33,11 +33,11 @@ Both store basic data on each tweet (`id`, `text`, `created_at`, `user_name`, `s
 
 Your __search query__ will be the first argument after each subcommand. You can also supply any of these optional arguments:
 
-    - `--db [connection string]`: Any valid SQLAlchemy connection string, describing where to store your results. Default: `sqlite:///twick.sqlite`
-    - `--throttle [num]`: Wait [num] seconds between API requests. Defaults to 15 to stay under standard rate limits.
-    - `--store-raw`: Store raw tweet JSON, in addition to excerpted fields described above.
-    - `--quiet`: Silence logging.
-    - `--credentials [api_key, api_secret, access_token, access_token_secret]`: See ["Setup"](#setup) above.
+- `--db [connection string]`: Any valid SQLAlchemy connection string, describing where to store your results. Default: `sqlite:///twick.sqlite`
+- `--throttle [num]`: Wait [num] seconds between API requests. Defaults to 15 to stay under standard rate limits.
+- `--store-raw`: Store raw tweet JSON, in addition to excerpted fields described above.
+- `--quiet`: Silence logging.
+- `--credentials [api_key, api_secret, access_token, access_token_secret]`: See ["Setup"](#setup) above.
 
 ## Examples
 
