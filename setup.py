@@ -8,7 +8,7 @@ if sys.version_info <= (2, 6):
 setup(
     name="twick",
     version="0.0.1",
-    description="Twitter, quick. Fetch and store tweets with minimal setup. Command-line tool and simple API.",
+    description="Fetch and store tweets on short notice.",
     long_description="",
     classifiers=[
         "Development Status :: 3 - Alpha",
