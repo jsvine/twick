@@ -17,10 +17,10 @@ logger = logging.getLogger("twick")
 DEFAULT_DB = "sqlite:///twick.sqlite"
 
 CREDENTIAL_NAMES = [
-    "TWITTER_API_KEY",
-    "TWITTER_API_KEY_SECRET",
-    "TWITTER_OAUTH_TOKEN",
-    "TWITTER_OAUTH_TOKEN_SECRET"
+    "TWICK_API_KEY",
+    "TWICK_API_SECRET",
+    "TWICK_ACCESS_TOKEN",
+    "TWICK_ACCESS_TOKEN_SECRET"
 ]
 
 def try_credential(name):
