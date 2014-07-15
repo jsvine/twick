@@ -62,7 +62,7 @@ def cmd_backfill(args):
         # Note: Unlike since_id, max_id is inclusive
         # Cf.: https://dev.twitter.com/docs/working-with-timelines
         first_id = get_first_id(args.db)
-        max_id = (first_id - 1) if first_id else None
+        max_id = (first_id or sys.maxint) - 1
         response = search.query(args.query, max_id=max_id)
         log_response(response)
         store_response(args.db, response, args.store_raw)
