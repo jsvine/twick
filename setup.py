@@ -7,7 +7,7 @@ if sys.version_info <= (2, 6):
 
 setup(
     name="twick",
-    version="0.0.1",
+    version="0.0.2",
     description="Fetch and store tweets on short notice.",
     long_description="",
     classifiers=[
