@@ -15,8 +15,7 @@ class Search(object):
         self.twitter = twython.Twython(*credentials)
 
     def query(self, q, **kw):
-        opts = dict(defaults)
-        opts.update(**kw)
+        opts = dict(defaults.items() + kw.items())
         wait = 1
         while True:
             try:
