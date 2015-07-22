@@ -1,4 +1,4 @@
-from search import Search
+from twick.search import Search
 
-VERSION_TUPLE = (0, 0, 2)
+VERSION_TUPLE = (0, 1, 0)
 VERSION = ".".join(map(str, VERSION_TUPLE))

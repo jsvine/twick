@@ -1,7 +1,8 @@
 from time import sleep
 import logging
 import twython
-from response import Response
+from copy import copy
+from twick.response import Response
 
 defaults = {
     "result_type": "recent",
@@ -15,7 +16,8 @@ class Search(object):
         self.twitter = twython.Twython(*credentials)
 
     def query(self, q, **kw):
-        opts = dict(defaults.items() + kw.items())
+        opts = copy(defaults)
+        opts.update(kw)
         wait = 1
         while True:
             try:

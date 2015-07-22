@@ -1,5 +1,5 @@
 import json
-import settings
+import twick.settings as settings
 
 def get_last_id(db):
     if not "tweets" in db.tables: return None

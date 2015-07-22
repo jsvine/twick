@@ -1,11 +1,11 @@
-from tweet import Tweet
 from datetime import datetime
-import settings
+from twick.tweet import Tweet
+import twick.settings as settings
 
 class Response(object):
     def __init__(self, raw):
         self.raw = raw
-        self.tweets = map(Tweet, raw["statuses"])
+        self.tweets = list(map(Tweet, raw["statuses"]))
         self.metadata = dict(raw["search_metadata"])
         self.timestamp = datetime.now()
 

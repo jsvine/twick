@@ -7,9 +7,9 @@ import logging
 from datetime import datetime
 from time import sleep
 from getpass import getpass
-from search import Search
-from persistence import get_last_id, get_first_id, store_response
-import settings
+from twick.search import Search
+from twick.persistence import get_last_id, get_first_id, store_response
+import twick.settings as settings
 
 logging.basicConfig()
 logger = logging.getLogger("twick")
@@ -62,7 +62,7 @@ def cmd_backfill(args):
         # Note: Unlike since_id, max_id is inclusive
         # Cf.: https://dev.twitter.com/docs/working-with-timelines
         first_id = get_first_id(args.db)
-        max_id = (first_id or sys.maxint) - 1
+        max_id = (first_id or sys.maxsize) - 1
         response = search.query(args.query, max_id=max_id)
         log_response(response)
         store_response(args.db, response, args.store_raw)
@@ -88,12 +88,12 @@ def add_shared_args(parser):
         help="""Wait X seconds between requests.
         Default: 15 (to stay under rate limits)""")
     parser.add_argument("--credentials",
-        type=get_credentials,
+        nargs=4,
         help="""
             Four space-separated strings for {}.
             Defaults to environment variables by those names.
-        """.format(", ".join(CREDENTIAL_NAMES)),
-        default=get_credentials())
+        """.format(", ".join(CREDENTIAL_NAMES))
+    )
     parser.add_argument("--store-raw",
         help="Store raw tweet JSON, in addition to excerpted fields.",
         action="store_true")
@@ -116,6 +116,7 @@ def parse_args():
 
 def main():
     args = parse_args()
+    args.credentials = get_credentials(args.credentials)
     logger.setLevel(logging.WARNING if args.quiet else logging.INFO)
     dispatch_command(args)
 

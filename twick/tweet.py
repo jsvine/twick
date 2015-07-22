@@ -1,5 +1,5 @@
 from datetime import datetime, time
-import settings
+import twick.settings as settings
 
 def parse_created_at(created_at):
     return datetime.strptime(created_at, settings.date_format)
