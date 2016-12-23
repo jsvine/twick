@@ -12,7 +12,7 @@ Developed at BuzzFeed.
 
 ## Setup
 
-To authenticate its API requests, `twick` requires the standard set of Twitter credentials: API key, API secret, access token, and access token secret. (For instructions on how to obtain these credentials, [read here](http://stackoverflow.com/a/12335636).) You can either supply them via the `--credentials` command-line argument (as four, space-separated strings), or by setting the following environment variables in your shell:
+To authenticate its API requests, `twick` requires the standard set of Twitter credentials: API key, API secret, access token, and access token secret. (For instructions on how to obtain these credentials, [read this StackOverflow answer](http://stackoverflow.com/a/12335636) or [follow Dan Nguyen's instructions](http://www.compjour.org/tutorials/getting-started-with-tweepy/).) You can either supply them via the `--credentials` command-line argument (as four, space-separated strings), or by setting the following environment variables in your shell:
 
 ```sh
 export TWICK_API_KEY="[replace me]"
